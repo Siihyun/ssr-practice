@@ -2,6 +2,16 @@ const express = require("express");
 const app = express();
 const port = 5000;
 
+const serverData = {
+  arrayTest: [1, 2, 3],
+  objectTest: {
+    a: {
+      b: 1,
+    },
+    c: 4,
+  },
+};
+
 app.use(express.static("./public"));
 
 app.get("/", (req, res) => {
@@ -10,8 +20,9 @@ app.get("/", (req, res) => {
     <head>
       <meta charset="UTF-8">
       <title>SSR TEST</title>
+      <link href="./test.css" rel="stylesheet" />
     </head>
-    <link href="./test.css" rel="stylesheet" />
+    
     <body>
     <div id="app">
       <ul>
@@ -24,6 +35,9 @@ app.get("/", (req, res) => {
     </div>
     </body>
     <script src='./event-binding.js'></script>
+    <script>window.__INITIAL_MODEL__ = ${JSON.stringify({
+      serverData,
+    })};</script>
     </html>`);
 });
 
