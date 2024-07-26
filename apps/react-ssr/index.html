@@ -3,11 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <title>SSR TEST</title>
-    <link href="./test.css" rel="stylesheet" />
+    <!-- <link href="./test.css" rel="stylesheet" /> -->
   </head>
 
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <div id="root">{{__SSR__PLACEHOLDER__}}</div>
+    <script type="module" src="/client/entry-client.tsx"></script>
+    <script>
+      window.__INITIAL_DATA__ = {{__INITIAL_DATA__}};
+    </script>
   </body>
 </html>
