@@ -4,19 +4,19 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev:server": "",
     "start": "NODE_ENV=production node ./dist/_start.mjs",
     "build": "pnpm run build:client && pnpm run build:ssr && pnpm run build:server",
     "build:client": "vite build --ssrManifest --outDir dist/client",
     "build:ssr": "vite build --ssr ./server/entry_server.tsx --outDir dist/server",
     "build:server": "node esbuild.config.js",
-    "dev": "tsx _dev.ts",
+    "dev": "tsx _dev.ts --watch",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
     "@types/express": "^4.17.21",
     "@types/node": "^20.14.0",
+    "@vanilla-extract/css": "^1.15.3",
     "esbuild": "^0.23.0",
     "express": "^4.18.2",
     "react": "^18.2.0",
@@ -27,6 +27,8 @@
   "devDependencies": {
     "@types/react": "^18.2.18",
     "@types/react-dom": "^18.2.7",
+    "@vanilla-extract/esbuild-plugin": "^2.3.8",
+    "@vanilla-extract/vite-plugin": "^4.0.13",
     "@vitejs/plugin-react": "^4.0.4",
     "eslint": "^8.46.0",
     "eslint-plugin-react": "^7.33.1",

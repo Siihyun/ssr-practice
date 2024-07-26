@@ -11,9 +11,10 @@ export const render = async ({
   template: string;
 }) => {
   const innerHTML = renderToString(<App />);
-  const initialData = JSON.stringify({ name: "react-ssr" });
+
   console.log("before ");
-  const data = await fakeFetch({ url: "", delay: 200 });
+  const data = await fakeFetch({ url: "", delay: 2000 });
+  const initialData = JSON.stringify(data);
   console.log("after");
 
   return template

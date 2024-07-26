@@ -1,6 +1,7 @@
 import { build } from "esbuild";
 import fs from "node:fs";
 import path from "node:path";
+import { vanillaExtractPlugin } from "@vanilla-extract/esbuild-plugin";
 
 const pkg = JSON.parse(fs.readFileSync(path.resolve("./package.json")));
 
@@ -14,6 +15,7 @@ const external = [
 
 build({
   entryPoints: ["./_start.ts"],
+  plugins: [vanillaExtractPlugin()],
   outdir: "dist",
   target: "es2022",
   platform: "node",
@@ -23,12 +25,6 @@ build({
   format: "esm",
   outExtension: {
     ".js": ".mjs",
-  },
-  banner: {
-    js: `
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-  `,
   },
   external,
 })
